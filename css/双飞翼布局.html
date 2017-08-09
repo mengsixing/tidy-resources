@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>双飞翼布局</title>
+	<style type="text/css">
+		.container{text-align: center;color: white;}
+		.left,.middle,.right{height: 200px;float: left;}
+		.middle{background-color: orange;width: 100%;}
+		/*inner撑开页面*/
+		.inner{margin: 0px 200px;}
+		.left{width: 200px; background-color: red;margin-left: -100%;}
+		.right{width: 200px;background-color: blue;margin-left:-200px;}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="middle">
+			<div class="inner">中</div> 
+		</div>
+		<div class="left">左</div>
+		<div class="right">右</div>
+	</div>
+</body>
+</html>

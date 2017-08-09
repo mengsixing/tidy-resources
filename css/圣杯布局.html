@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>圣杯布局</title>
+	<style type="text/css">
+		.container{padding: 0px 200px;text-align: center;color: white;}
+		.left,.middle,.right{height: 200px;float: left;}
+		.middle{background-color: orange;width: 100%;}
+		/*使用position偏移*/
+		.left{width: 200px; background-color: red;margin-left: -100%;position: relative;left: -200px;}
+		.right{width: 200px;background-color: blue;margin-left:-200px;position: relative;right: -200px;}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="middle">中</div>
+		<div class="left">左</div>
+		<div class="right">右</div>
+	</div>
+</body>
+</html>
