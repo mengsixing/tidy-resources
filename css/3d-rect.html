@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>3d-range</title>
+	<style type="text/css">
+		#container{text-align: center;margin-top: 100px; }
+		@-webkit-keyframes animation
+		{
+			from,to{}
+			16% { -webkit-transform: rotateY(-90deg);}
+			33% { -webkit-transform: rotateY(-90deg) rotateZ(135deg);}
+			50% { -webkit-transform: rotateY(225deg) rotateZ(135deg);}
+			66% { -webkit-transform: rotateY(135deg) rotateX(135deg);}
+			83% { -webkit-transform: rotateX(135deg);}
+		}
+		.box{width: 160px;
+			height: 160px;
+			margin: auto;
+			position: relative;
+			transform-style: preserve-3d;
+			transform-origin: 80px 80px 0;
+			animation: animation 5s infinite;
+		}
+		.box>div{position: absolute; width: 160px;height: 160px;background-color: rgba(255,200,100,0.8);line-height: 160px;font-size: 36px;border: 3px solid;}
+
+		.box1{transform:translateZ(80px);}
+		.box2{transform:translateZ(-80px);}
+		.box3{transform:translateX(-80px)rotateY(90deg);}
+		.box4{transform:translateX(80px)rotateY(90deg);}
+		.box5{transform:translateY(80px)rotateX(90deg);}
+		.box6{transform:translateY(-80px)rotateX(90deg);}
+
+	</style>
+</head>
+<body>
+	<div id="container">
+		<div class="box">
+			<div class="box1">1</div>
+			<div class="box2">2</div>
+			<div class="box3">3</div>
+			<div class="box4">4</div>
+			<div class="box5">5</div>
+			<div class="box6">6</div>
+		</div>
+	</div>
+</body>
+</html>

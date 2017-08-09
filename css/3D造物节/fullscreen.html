@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>quanjing</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+	<style type="text/css">
+		body{
+			background-image: url('./images/bg.jpg')
+		}
+		.container{
+			margin: 0 auto 0 auto;
+			width: 8.0625rem;
+			perspective: 25rem;
+		}
+
+		#box{
+			-webkit-transform-style: preserve-3d;
+			height: 100%;
+			-webkit-perspective-origin: 50% 50%;
+		}
+
+		#box > div{
+			position: absolute;
+			width: 8.0625rem;
+			height: 73.125rem;
+
+		}
+	</style>
+	<script src="https://cdn.bootcss.com/zepto/1.0rc1/zepto.min.js"></script>
+</head>
+<body>
+	<section class="container">
+		<section id="box">
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</section>
+		
+	</section>
+	
+	<script>
+		var box = document.getElementById('box');
+		var startX = 0,
+		x = 0,
+		endX = 0;
+		//设置图片位置
+		function setImage(){
+			let tui= calculateTui();
+			$('div').each((index,item)=>{
+				index++;
+				let deg=(index-1)*18;
+				item.style.background = `url("./images/p${index}.png") no-repeat`;
+				item.style.WebkitTransform = `rotateY(${deg}deg) translatez(${tui}px)`;
+			});
+		}
+		//获取向外推的距离
+		function calculateTui(){
+			//根据20张图片计算推动的距离，-3是为了不留间隙
+			return 129 / 2 /(Math.tan(Math.PI/20)) -3;
+		}
+		window.onload=function(){
+			setImage();
+			$('#box').on('touchstart', function(event) {
+				event.preventDefault();
+				let touch=event.targetTouches[0];
+				startX = touch.pageX - x;
+			})
+			$('#box').on('touchmove', function(event) {
+				event.preventDefault();
+				var touch = event.targetTouches[0];
+				endX = touch.pageX;
+				x = endX - startX;
+				box.style.transform = 'rotateY(' + x + 'deg)';
+
+			})
+		}
+	</script>
+</body>
+</html>
