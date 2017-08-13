@@ -1,0 +1,40 @@
+
+
+<script>
+
+function AddMethod(obj,name,fn){
+	var oldObj=obj[name];
+	obj[name]=function(){
+			debugger;
+		if(fn.length===arguments.length){
+
+			obj[name]=fn.apply(this,arguments);
+		}else{
+			//如果没有找到对应参数的方法就报错
+			 obj[name]=oldObj.apply(this,arguments);
+		}
+	}
+	
+}
+
+var obj={};
+
+function f1(){
+	console.log('没有参数');
+}
+function f2(one){
+	console.log('有一个参数');
+}
+
+//绑定对应参数的方法
+AddMethod(obj,"find",f1);
+AddMethod(obj,"find",f2);
+
+
+//运行结果
+obj.find();//没有参数
+obj.find(1);//有一个参数
+obj.find(1,2,3);//抛出异常，没有对应参数的实现方法
+</script>
+
+
