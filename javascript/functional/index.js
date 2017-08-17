@@ -1,14 +1,42 @@
 //函数式编程
 
+//高阶函数
+var add=function(a,b){
+	return a+b;
+}
+
+function math(func,array){
+	return func(array[0],array[1]);
+}
+match(add,[1,2]);
+
+//函数尾调用
+var number=0;
+//递归吃内存(返回的不是一个函数，不是尾递归)
+function jia(n){
+	if(n==1){
+		return 1;
+	}
+	return n + jia(n-1);
+}
+//尾递归
+function jia2(n,total=0){
+	if(n===1){
+		return total+n;
+	}
+	return jia2(n-1,n+total);
+}
+console.log(jia2(3));
+
 //1、柯里化
-function cury(fn){
+function curry(fn){
 	return function(x){
 		return fn(x);
 	}
 }
 var add1 = x=>x+1;
-var curyTest=cury(add1)(5);
-console.log('柯里化：',curyTest);
+var curryTest=curry(add1)(5);
+console.log('柯里化：',curryTest);
 
 //2、函数组合
 function compose(fn1, fn2) {
