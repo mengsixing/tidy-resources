@@ -7,48 +7,60 @@ class PraiseButton {
 	}
 
 }
-
 class Thumb extends PraiseButton {
 	constructor(element, fn) {
 		super();
 		this.element = element;
 		//绑定点击事件
 		var _this = this;
-		this.element.onclick = function() {
+		this.createThumb();
+		$('#hand').click(function () {
+			if(_this.count>=10){
+				return;
+			}
 			_this.addPraise();
 			_this.showAnimate();
 			fn(_this);
-		}
+		});
+	}
+	createThumb() {
+		var handHtml = `<div class="hand" id="hand">
+		<div class="hand-left"></div>
+		<div class="hand-right">
+			<div class="hand-right-finger finger1"></div>
+			<div class="hand-right-finger finger2"></div>
+			<div class="hand-right-finger finger3"></div>
+			<div class="hand-right-finger finger4"></div>
+			<div class="hand-right-finger finger5"></div>
+			<div class="hidden"></div>
+		</div>
+	</div>`;
+		$(this.element).html(handHtml);
 	}
 	showAnimate() {
-		document.querySelector(".hand-small").style.transform = "translateY(-100px)";
-		document.querySelector(".hand-small").style.opacity = "1";
-		//动画完成还原状态
-		setTimeout(function() {
-			document.querySelector(".hand-small").style.opacity = "0";
-			document.querySelector(".hand-small").style.transform = "translateY(0px)";
-		}, 500);
+		let addone= $('<div class="hand-small">+1</div>');
+		$('#hand').append(addone);
+		$(addone).addClass('animate');
 	}
-
 }
 
-window.onload = function() {
-	var ele = document.getElementById('hand');
-	var a = new Thumb(ele, function(a) {
+$(function () {
+	var ele = document.getElementById('hand-wrapper');
+	var a = new Thumb(ele, function (a) {
 		console.log(a.count);
 		if (a.count === 10) {
-			for (let item of document.querySelectorAll(".hand-right-finger,.hand-left,.hidden")) {
-				item.style.backgroundColor = "gray";
-			}
+			$(".hand-right-finger,.hand-left,.hidden").css('background','gray');
 			ele.onclick = null;
 		};
 	});
-}
-
-describe("这是测试2", function() {
-  var a;
-  it("and so is a spec", function() {
-    a = true;
-    expect(a).toBe(true);
-  });
 });
+
+
+
+// describe("这是测试2", function() {
+//   var a;
+//   it("and so is a spec", function() {
+//     a = true;
+//     expect(a).toBe(true);
+//   });
+// });

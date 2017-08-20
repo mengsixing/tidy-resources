@@ -5,30 +5,31 @@
 	<title>addZan</title>
 	<style type="text/css">
 		.hand{margin-top: 200px;position: relative;font-size: 0px;display: inline-block;}
-		.hand-left{display: inline-block;width: 150px;height: 180px;background: skyblue;position:absolute;z-index:1;top: 14px;border: 1px solid; }
+		.hand-left{display: inline-block;width: 150px;height: 180px;background: #a6d49d;position:absolute;z-index:1;top: 14px;border: 1px solid #c22846; }
 		.hand-right{display: inline-block;position:relative;margin-left: 80px; }
-		.hand-right-finger{height: 50px;width: 150px;background: skyblue;border-radius:0px 20px 20px 0px; border: 1px solid black; }
+		.hand-right-finger{height: 50px;width: 150px;border-radius:0px 20px 20px 0px; border: 1px solid #c22846;
+			/* background: radial-gradient(circle at right ,#a6d49d, white); */
+			background: linear-gradient(to right,#a6d49d 80%, white 100% );
+
+		 }
 		.finger1{position: absolute;width: 135px; transform: rotateZ(-60deg); transform-origin: 25px 25px; }
 		.finger2{border-top-left-radius:10px;}
 		.finger5{border-bottom-left-radius:10px;}
 
-		.hidden{width:100px;position: absolute;background-color: skyblue;left: 1px;top: 1px;bottom: 1px; z-index: 2;border-radius: 10px; }
-		.hand-small{position: absolute;right: 0px;top: 0px;font-size: 36px;opacity: 0;transition:transform 0.5s;}
+		.hidden{width:100px;position: absolute;background-color: #a6d49d;left: 1px;top: 1px;bottom: 1px; z-index: 2;border-radius: 10px; }
+		.hand-small{position: absolute;right: 10px;top: 0px;font-size: 36px;transition:transform 0.5s;opacity: 0;}
+		.hand-small.animate{animation:praise-add 0.5s; }
+		@keyframes praise-add
+		{
+		0%   {transform:translate(0px,0px);opacity: 0;}
+		75%  {transform:translate(100px,-100px);opacity: 1; }
+		100% {transform:translate(100px,-100px);opacity: 0;}
+		}
 	</style>
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 	<script type="text/javascript" src="./index.js"></script>
 </head>
 <body>
-	<div class="hand" id="hand">
-		<div class="hand-left"></div>
-		<div class="hand-right">
-			<div class="hand-right-finger finger1"></div>
-			<div class="hand-right-finger finger2"></div>
-			<div class="hand-right-finger finger3"></div>
-			<div class="hand-right-finger finger4"></div>
-			<div class="hand-right-finger finger5"></div>
-			<div class="hidden"></div>
-		</div>
-		<div class="hand-small">+1</div>
-	</div>
+	<div id="hand-wrapper"></div>
 </body>
 </html>
