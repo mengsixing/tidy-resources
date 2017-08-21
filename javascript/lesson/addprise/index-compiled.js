@@ -45,14 +45,14 @@ var Thumb = function (_PraiseButton) {
 	_createClass(Thumb, [{
 		key: 'createThumb',
 		value: function createThumb(fn) {
-			var handHtml = '<div class="hand">\n\t\t<div class="hand-left"></div>\n\t\t<div class="hand-right">\n\t\t\t<div class="hand-right-finger finger1"></div>\n\t\t\t<div class="hand-right-finger finger2"></div>\n\t\t\t<div class="hand-right-finger finger3"></div>\n\t\t\t<div class="hand-right-finger finger4"></div>\n\t\t\t<div class="hand-right-finger finger5"></div>\n\t\t\t<div class="hidden"></div>\n\t\t</div>\n\t</div>';
+			var handHtml = '<div class="hand">\n\t\t<div class="hand-left"></div>\n\t\t<div class="hand-right">\n\t\t\t<div class="hand-right-finger finger1"><div class=\'finger1-press\'></div></div>\n\t\t\t<div class="hand-right-finger finger2"></div>\n\t\t\t<div class="hand-right-finger finger3"></div>\n\t\t\t<div class="hand-right-finger finger4"></div>\n\t\t\t<div class="hand-right-finger finger5"></div>\n\t\t\t<div class="hidden"></div>\n\t\t</div>\n\t</div>';
 			$(this.element).html(handHtml);
 			//绑定点击事件
 			var _this = this;
 			$(this.element).find('.hand').click(function () {
 				if (_this.count >= 10) {
 					//变为灰色
-					$(this).find(".hand-right-finger,.hand-left,.hidden").css({ 'background': 'gray', 'border': 'none', 'box-shadow': 'none' });
+					$(this).find(".hand-right-finger,.hand-left,.hidden,.finger1-press").css({ 'background': 'gray', 'border': 'none', 'box-shadow': 'none' });
 					return;
 				}
 				_this.addPraise();
@@ -63,7 +63,7 @@ var Thumb = function (_PraiseButton) {
 	}, {
 		key: 'showAnimate',
 		value: function showAnimate() {
-			var addone = $('<div class="hand-small">+1</div>');
+			var addone = $('<div class="hand-small">+' + this.count + '</div>');
 			$(this.element).find('.hand').append(addone);
 			$(addone).addClass('animate');
 		}
