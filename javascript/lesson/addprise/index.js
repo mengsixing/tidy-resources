@@ -1,3 +1,4 @@
+//父类，点赞后count+1
 class PraiseButton {
 	constructor() {
 		this.count = 0;
@@ -8,9 +9,10 @@ class PraiseButton {
 
 }
 class Thumb extends PraiseButton {
-	constructor(element, fn) {
+	constructor({element,limit, fn}) {
 		super();
 		this.element = element;
+		this.limit=limit;
 		this.createThumb(fn);
 	}
 	createThumb(fn) {
@@ -29,14 +31,15 @@ class Thumb extends PraiseButton {
 		//绑定点击事件
 		var _this = this;
 		$(this.element).find('.hand').click(function() {
-			if (_this.count >= 10) {
+			if ( (_this.count+1) >=_this.limit ) {
 				//变为灰色
 				$(this).find(".hand-right-finger,.hand-left,.hidden,.finger1-press").css({'background':'gray','border':'none','box-shadow':'none'});
-				return;
+				$(this).unbind("click");
 			}
 			_this.addPraise();
 			_this.showAnimate();
-			fn(_this);
+			//把点赞数字暴露出去
+			fn(_this.count);
 		});
 	}
 	showAnimate() {

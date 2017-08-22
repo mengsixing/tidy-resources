@@ -30,6 +30,7 @@ for (var i = 0; i <= 9; i++) {
 	  it("count的值正确吗？", function() {
 	    expect(i).toBe(ss.count);
 	  });
+	//调用点赞方法测试
 	ss.addPraise();
 }
 });

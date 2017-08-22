@@ -1,62 +1,61 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
-	<title>addZan</title>
+	<title>addZan(请在web服务器中查看)</title>
 	<style type="text/css">
 		.hand{margin-top: 200px;position: relative;font-size: 0px;display: inline-block;}
-		.hand-left{display: inline-block;width: 150px;height: 180px;background: #a6d49d;position:absolute;z-index:1;top: 14px;border: 1px solid #A76E49; }
-		.hand-right{display: inline-block;position:relative;margin-left: 80px; }
-		.hand-right-finger{height: 50px;width: 175px;border-radius:0px 40px 40px 0px; 
-			/* background: radial-gradient(circle at right ,#a6d49d, white); */
-			background: linear-gradient(to right,#a6d49d 80%, white 100% );
-			border: 5px solid #a6d49d;
-			box-shadow: 0px 0px 0px 1px #A76E49;
-		 }
-		 .hand-right-finger::after{
-		 	content: '';
-		 	background-color: blue;
-		 }
-		.finger1{position: absolute;width: 150px; transform: rotateZ(-60deg); transform-origin: 25px 25px;text-align: center }
-		.finger1-press{background: linear-gradient(to right,#a6d49d 50%, #A6A6A6 100% ); width: 50px;
-    height: 100%;
-    display: inline-block;border-radius: 50%;}
-		.finger2{border-top-left-radius:10px;border-bottom: none; }
-		.finger3,.finger4{border-bottom: none;}
-		.finger5{border-bottom-left-radius:10px;}
-
-		.hidden{width:100px;position: absolute;background-color: #a6d49d;left: 1px;top: 1px;bottom: 1px; z-index: 2;border-radius: 10px; }
-		.hand-small{position: absolute;right: 10px;top: 0px;font-size: 36px;transition:transform 0.5s;opacity: 0;}
-		.hand-small.animate{animation:praise-add 0.5s; }
-		@keyframes praise-add
-		{
-		0%   {transform:translate(0px,0px);opacity: 0;}
-		75%  {transform:translate(100px,-100px);opacity: 1; }
-		100% {transform:translate(100px,-100px);opacity: 0;}
-		}
+		.hand-left{display: inline-block;width: 150px;height: 180px;background: #a6d49d;position: absolute;z-index: 1;top: 14px;border: 1px solid #A76E49;}
+		.hand-right{display: inline-block;position: relative;margin-left: 80px;}
+		.hand-right-finger{height: 50px;width: 175px;border-radius: 0px 40px 40px 0px;background: linear-gradient(to right, #a6d49d 80%, white 100%);border: 5px solid #a6d49d;box-shadow: 0px 0px 0px 1px #A76E49;}
+		.hand-right-finger::after{content: '';background-color: blue;}
+		.finger1{position: absolute;width: 150px;transform: rotateZ(-60deg);transform-origin: 25px 25px;text-align: center}
+		.finger1-press{background: linear-gradient(to right, #a6d49d 50%, #A6A6A6 100%);width: 50px;height: 100%;display: inline-block;border-radius: 50%;}.finger2{border-top-left-radius: 10px;}
+		.finger5{border-bottom-left-radius: 10px;}
+		.hidden{width: 100px;position: absolute;background-color: #a6d49d;left: 1px;top: 1px;bottom: 1px;z-index: 2;border-radius: 10px;}
+		.hand-small{position: absolute;right: 10px;top: 0px;font-size: 36px;transition: transform 0.5s;opacity: 0;}
+		.hand-small.animate{animation: praise-add 0.5s;}
+		@keyframes praise-add{
+			0%{transform: translate(0px, 0px);opacity: 0;}
+			75%{transform: translate(100px, -100px);opacity: 1;}
+			100%{transform: translate(100px, -100px);opacity: 0;}
+			}
 	</style>
 	<script src="https://cdn.bootcss.com/systemjs/0.20.17/system.js"></script>
 	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-	<!-- <script type="text/javascript" src="./index-compiled.js"></script> -->
 </head>
+
 <body>
 	<div id="hand-wrapper"></div>
 	<div id="hand-wrapper2"></div>
 	<script>
-	$(function() {
-		SystemJS.import('./index-compiled.js').then(function(m) {
-			//绑定插件
-			jQuery.fn.extend({
-				initPraise: function() {
-					return new m.default(this, function(a) {
-						console.log(a.count);
-					});
-				}
+		$(function () {
+		    SystemJS.import('./index-compiled.js').then(function (m) {
+				//绑定插件
+				jQuery.fn.extend({
+					initPraise: function (limit,callback) {
+						return new m.default({
+							element: this,
+							limit: limit,
+							fn: function (a) {
+							    callback(a);
+							}
+						});
+					}
+				});
+				//使用插件
+				$('#hand-wrapper').initPraise(3, function (count) {
+				    //自定义点赞事件
+				    console.log(count);
+				});
+				$('#hand-wrapper2').initPraise(5, function (count) {
+				    //自定义点赞事件
+				    console.log(count);
+				});
 			});
-			//使用插件
-			$('#hand-wrapper').initPraise();
 		});
-	});
 	</script>
 </body>
+
 </html>

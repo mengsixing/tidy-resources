@@ -12,6 +12,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+//父类，点赞后count+1
 var PraiseButton = function () {
 	function PraiseButton() {
 		_classCallCheck(this, PraiseButton);
@@ -32,12 +33,17 @@ var PraiseButton = function () {
 var Thumb = function (_PraiseButton) {
 	_inherits(Thumb, _PraiseButton);
 
-	function Thumb(element, fn) {
+	function Thumb(_ref) {
+		var element = _ref.element,
+		    limit = _ref.limit,
+		    fn = _ref.fn;
+
 		_classCallCheck(this, Thumb);
 
 		var _this2 = _possibleConstructorReturn(this, (Thumb.__proto__ || Object.getPrototypeOf(Thumb)).call(this));
 
 		_this2.element = element;
+		_this2.limit = limit;
 		_this2.createThumb(fn);
 		return _this2;
 	}
@@ -50,14 +56,15 @@ var Thumb = function (_PraiseButton) {
 			//绑定点击事件
 			var _this = this;
 			$(this.element).find('.hand').click(function () {
-				if (_this.count >= 10) {
+				if (_this.count + 1 >= _this.limit) {
 					//变为灰色
 					$(this).find(".hand-right-finger,.hand-left,.hidden,.finger1-press").css({ 'background': 'gray', 'border': 'none', 'box-shadow': 'none' });
-					return;
+					$(this).unbind("click");
 				}
 				_this.addPraise();
 				_this.showAnimate();
-				fn(_this);
+				//把点赞数字暴露出去
+				fn(_this.count);
 			});
 		}
 	}, {
