@@ -5,6 +5,7 @@
 	<meta charset="UTF-8">
 	<title>addZan(请在web服务器中查看)</title>
 	<style type="text/css">
+		#hand-wrapper{width: 500px;height: 500px;text-align: center;background: linear-gradient(to bottom right, #9CD792 0%, #D6DED2 80%);}
 		.hand{margin-top: 200px;position: relative;font-size: 0px;display: inline-block;}
 		.hand-left{display: inline-block;width: 150px;height: 180px;background: #a6d49d;position: absolute;z-index: 1;top: 14px;border: 1px solid #A76E49;}
 		.hand-right{display: inline-block;position: relative;margin-left: 80px;}
@@ -28,7 +29,6 @@
 
 <body>
 	<div id="hand-wrapper"></div>
-	<div id="hand-wrapper2"></div>
 	<script>
 		$(function () {
 		    SystemJS.import('./index-compiled.js').then(function (m) {
@@ -45,11 +45,7 @@
 					}
 				});
 				//使用插件
-				$('#hand-wrapper').initPraise(3, function (count) {
-				    //自定义点赞事件
-				    console.log(count);
-				});
-				$('#hand-wrapper2').initPraise(5, function (count) {
+				$('#hand-wrapper').initPraise(10, function (count) {
 				    //自定义点赞事件
 				    console.log(count);
 				});

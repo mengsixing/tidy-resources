@@ -3,7 +3,7 @@ By = webdriver.By,
 until = webdriver.until;
 
 var driver = new webdriver.Builder()
-.forBrowser('chrome')
+.forBrowser('firefox')
 .build();
 
 driver.get('http://www.baidu.com/');

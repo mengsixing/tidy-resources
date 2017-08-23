@@ -25,7 +25,7 @@ var PraiseButton = function () {
 
 
 var ss=new PraiseButton();
-describe("A suite is just a function", function() {
+describe("循环调用10次addPraise方法，判断count值是否正确", function() {
 for (var i = 0; i <= 9; i++) {
 	  it("count的值正确吗？", function() {
 	    expect(i).toBe(ss.count);
