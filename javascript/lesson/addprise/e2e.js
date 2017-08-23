@@ -6,8 +6,18 @@ var driver = new webdriver.Builder()
 .forBrowser('firefox')
 .build();
 
-driver.get('http://www.baidu.com/');
-driver.findElement(By.name('q')).sendKeys('webdriver');
-driver.findElement(By.name('btnG')).click();
-driver.wait(until.titleIs('webdriver - Google Search'), 1000);
+driver.get('http://localhost:8080/tidy/javascript/lesson/addprise/index.html');
+var button = driver.wait(until.elementLocated(By.css('.hand')), 10000);
+button.click();
+button.click();
+button.click();
+button.click();
+button.click();
+button.click();
+button.click();
+button.click();
+button.click();
+button.click();
+button.click();
+button.click();
 driver.quit();
