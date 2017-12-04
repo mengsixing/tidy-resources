@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Bubble</title>
+</head>
+<body>
+	<script type="text/javascript">
+		class Bubble{
+			constructor(array){
+				this.dataSourse=array;
+			}
+			startSort(){
+				const arrayLength=this.dataSourse.length;
+				for (var outer = 1; outer < arrayLength; outer++) {
+					for (var inner = 1; inner <= arrayLength-outer; inner++) {
+						if(this.dataSourse[inner-1]>this.dataSourse[inner]){
+							this.changePlace(inner,inner-1);
+							console.log(this.dataSourse);
+						}
+					}
+				}
+			}
+			changePlace(index1,index2){
+				const tmp=this.dataSourse[index1];
+				this.dataSourse[index1]=this.dataSourse[index2];
+				this.dataSourse[index2]=tmp;
+			}
+		}
+		const array= [5,6,1,2,4,9,7,3,8];
+		var bubbleArray=new Bubble(array);
+		bubbleArray.startSort();
+		console.log(bubbleArray.dataSourse);
+	</script>
+</body>
+</html>
