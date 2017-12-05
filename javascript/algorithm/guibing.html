@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>归并排序</title>
+</head>
+<body>
+	
+	<script type="text/javascript">
+		//归并排序
+        function mergeSort(arr){
+        	if(arr.length<2){
+        		return
+        	}
+        	var step=1;
+        	var left,right;
+        	while(step<arr.length){
+        		left=0;
+        		right=step;
+        		while(right+step<=arr.length){
+        			merageArrays(arr,left,left+step,right,right+step)
+        			left=right+step;
+        			right=left+step;
+        		}
+        		if(right<arr.length){
+        			merageArrays(arr,left,left+step,right,arr.length)
+        		}
+        		console.warn(arr);
+        		step*=2;
+        	}
+        }
+        function merageArrays(arr,startLeft,stopLeft,startRight,stopRight){
+        	var rightArr=new Array(stopRight-startRight+1);
+        	var leftArr=new Array(stopLeft-startLeft+1);
+        	k=startRight;
+        	for(var i=0;i<rightArr.length-1;i++){
+        		rightArr[i]=arr[k];
+        		++k;
+        	}
+        	k=startLeft;
+        	for(var i=0;i<leftArr.length-1;i++){
+        		leftArr[i]=arr[k];
+        		++k;
+        	}
+        	rightArr[rightArr.length-1]=Infinity;
+        	leftArr[leftArr.length-1]=Infinity;
+        	var m=0;
+        	var n=0;
+        	for(var k=startLeft;k<stopRight;k++){
+        		if(leftArr[m]<=rightArr[n]){
+        			arr[k]=leftArr[m];
+        			m++;
+        		}else{
+        			arr[k]=rightArr[n];
+        			n++;
+        		}
+        	}
+        }
+
+        var arr=[2,3,7,9,8,5,4,6,1];
+        mergeSort(arr);
+        console.log(arr);
+	</script>
+</body>
+</html>

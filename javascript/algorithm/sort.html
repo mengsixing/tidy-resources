@@ -10,6 +10,7 @@
     <script type="text/javascript">
     class SortArray {
         constructor(array) {
+        	console.log('原始数组：',array);
             this.dataSource = array;
         }
         //选择排序
@@ -26,14 +27,13 @@
                 this.swap(outer,min);
             }
         }
+        //插入排序
         insertSort(){
-        	console.log('插入排序');
         	var temp,inner;
         	for(var outer=1;outer<this.dataSource.length;outer++){
         		temp=this.dataSource[outer];
         		inner=outer;
         		while(inner>0&&this.dataSource[inner-1]>=temp){
-        			debugger;
         			this.dataSource[inner]=this.dataSource[inner-1];
         			inner--;
         		}
@@ -42,6 +42,7 @@
         		
         	}
         }
+        
 
         swap(index1,index2){
         	var tmp=this.dataSource[index1];
@@ -53,9 +54,8 @@
     var myArray=[2,3,1,9,6,4,7,8,5];
 
     var s=new SortArray(myArray);
-console.log(s.dataSource);
-    s.insertSort();
-    //console.log(s.dataSource);
+    s.mergeSort();
+    console.log('排序后的数组：',s.dataSource);
     </script>
 </body>
 
