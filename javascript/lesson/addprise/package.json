@@ -10,10 +10,10 @@
   "license": "ISC",
   "devDependencies": {
     "babel-preset-env": "^1.6.0",
-    "jasmine-core": "^2.7.0",
-    "karma": "^1.7.0",
+    "jasmine-core": "^3.3.0",
+    "karma": "^3.1.4",
     "karma-chrome-launcher": "^2.2.0",
-    "karma-jasmine": "^1.1.0",
+    "karma-jasmine": "^2.0.1",
     "karma-phantomjs-launcher": "^1.0.4"
   },
   "dependencies": {
