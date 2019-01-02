@@ -1,0 +1,9 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "javascript/lesson/addprise/package.json"
+      ]
+    }
+  }
+}
